@@ -12,6 +12,9 @@
         android:theme="@style/Theme.OLX"
         tools:targetApi="31">
         <activity
+            android:name=".LoginOptionActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
