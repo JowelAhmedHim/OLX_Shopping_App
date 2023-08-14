@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.olx.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() == null){
+            starLoginActivity();
+        }
 
         binding.bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -48,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void showHomeFragment(){
         binding.toolbarTitleTv.setText("Home");
@@ -80,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(binding.frameLayout.getId(),fragment,"AccountFragment");
         fragmentTransaction.commit();
 
+    }
+
+    private void starLoginActivity() {
+        startActivity(new Intent(this,LoginOptionActivity.class));
     }
 }
