@@ -14,7 +14,10 @@
         android:theme="@style/Theme.OLX"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".RegisterEmailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginEmailActivity"
             android:exported="false" />
         <activity
             android:name=".LoginOptionActivity"
